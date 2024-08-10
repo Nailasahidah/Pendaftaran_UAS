@@ -1,0 +1,95 @@
+<ng-container *ngIf="(newProductState$ | async) as state" [ngSwitch]="state.dataState">
+  <ng-container *ngSwitchCase="DataState.LOADED">
+    <app-navbar [user]="state?.appData?.data?.user"></app-navbar>
+    <section>
+      <div class="container">
+        <nav aria-label="breadcrumb" style="margin-top: 8px;">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']">Home</a>
+            </li>
+            <li class="breadcrumb-item"> <a [routerLink]="['/customers']">Products</a> </li>
+            <li class="breadcrumb-item active" aria-current="page">New</li>
+          </ol>
+        </nav>
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <h2><i style="margin-right: 5px;" class="bi bi-person-plus-fill"></i> New Product
+                  </h2>
+                </div>
+                <div *ngIf="state.error"
+                     class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
+                     role="alert">
+                  {{ state.error }}
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                          aria-label="Close"></button>
+                </div>
+
+                <form #newProductForm="ngForm" (ngSubmit)="createProduct(newProductForm)">
+                  <div class="row">
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input
+                          type="text" id="name" ngModel name="name" class="form-control" required
+                          [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" ngModel name="price" class="form-control" required
+                               [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="text" ngModel name="stock" id="stock" class="form-control" required
+                               [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="mb-3">
+<!--                          <label for="formFileSm" class="form-label">Image</label>-->
+<!--                          <input class="form-control" id="formFileMd" type="text" ngModelrequired-->
+<!--                                 [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"-->
+<!--                          >-->
+                        </div>
+                      </div>
+<!--                      <div class="col-md-12">-->
+<!--                        <div class="form-group">-->
+<!--                          <label>Image URL</label>-->
+<!--                          <input type="file" ngModel name="imageUrl" class="form-control" required-->
+<!--                                 [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"-->
+<!--                          >-->
+<!--                        </div>-->
+<!--                      </div>-->
+                    </div>
+                  </div>
+                  <div>
+                    <button [disabled]="state.dataState === DataState.LOADING || newProductForm.invalid || newProductForm.pristine|| (isLoading$ | async)"
+                            type="submit" class="btn btn-primary mt-5">
+                                            <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm"
+                                                  role="status" aria-hidden="true" style="margin-right: 5px;"></span>
+                      <span *ngIf="isLoading$ | async">Saving...</span>
+                      <span *ngIf="!(isLoading$ | async)">Save Product</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-container>
+

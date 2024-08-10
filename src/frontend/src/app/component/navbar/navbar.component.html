@@ -1,5 +1,5 @@
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">
       <i style="margin-right: 5px;" class="fonts"></i>
@@ -7,6 +7,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <h2 style="font-family: BlackChancery, sans-serif; color: white">Cashier Application</h2>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
@@ -29,22 +30,22 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Invoices
+            Purchase
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-            <li><a class="dropdown-item" [routerLink]="['/invoices/new']"><i style="padding-right: 8px;" class="bi bi-receipt"></i>New Invoice</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/invoices']"><i style="padding-right: 8px;" class="bi bi-receipt-cutoff"></i>All Invoices</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/invoices/new']"><i style="padding-right: 8px;" class="bi bi-receipt"></i>New Purchase</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/invoices']"><i style="padding-right: 8px;" class="bi bi-receipt-cutoff"></i>All Purchase</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Users
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-            <li><a class="dropdown-item" [routerLink]="['/users/new']"><i style="padding-right: 8px;" class="bi bi-person-plus-fill"></i>New User</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/users']"><i style="padding-right: 8px;" class="bi bi-people-fill"></i>All Users</a></li>
-          </ul>
-        </li>
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Users-->
+<!--          </a>-->
+<!--          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">-->
+<!--            <li><a class="dropdown-item" [routerLink]="['/users/new']"><i style="padding-right: 8px;" class="bi bi-person-plus-fill"></i>New User</a></li>-->
+<!--            <li><a class="dropdown-item" [routerLink]="['/users']"><i style="padding-right: 8px;" class="bi bi-people-fill"></i>All Users</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img [src]="user?.imageUrl" [alt]="user?.fullName" class="user-avatar-md rounded-circle"></a>

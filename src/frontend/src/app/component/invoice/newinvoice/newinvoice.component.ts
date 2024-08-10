@@ -7,6 +7,7 @@ import {User} from "../../../interface/user";
 import {DataState} from "../../../enum/datastate.enum";
 import {CustomerService} from "../../../service/customer.service";
 import {NgForm} from "@angular/forms";
+import {state} from "@angular/animations";
 
 @Component({
   selector: 'app-newinvoice',
@@ -18,7 +19,6 @@ export class NewinvoiceComponent implements OnInit {
   private dataSubject = new BehaviorSubject<CustomHttpResponse<Customer[] & User>>(null);
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoadingSubject.asObservable();
-  readonly DataState = DataState;
 
   constructor(private customerService: CustomerService) {
   }
@@ -44,7 +44,6 @@ export class NewinvoiceComponent implements OnInit {
       .pipe(
         map(response => {
           console.log(response);
-          newInvoiceForm.reset({ status: 'PENDING' });
           this.isLoadingSubject.next(false);
           this.dataSubject.next(response);
           return { dataState: DataState.LOADED, appData: this.dataSubject.value };
@@ -56,4 +55,7 @@ export class NewinvoiceComponent implements OnInit {
         })
       )
   }
+
+  protected readonly state = state;
+  protected readonly DataState = DataState;
 }

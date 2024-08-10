@@ -1,3 +1,8 @@
 .fonts {
   font-family: "Times New Roman";
 }
+
+.custom-table-bg {
+  background-color: #3b5998; /* Warna abu-abu */
+}
+

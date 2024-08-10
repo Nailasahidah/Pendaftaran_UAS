@@ -1,14 +1,15 @@
 
-<section *ngIf="(loginState$ | async) as state" [ngSwitch]="state.dataState" class="bod">
+<section *ngIf="(loginState$ | async) as state" [ngSwitch]="state.dataState" class="bod" >
   <div *ngIf="!state.loginSuccess && !state.isUsingMfa" class="container">
     <div class="row justify-content-center my-5">
       <div class="col-md-6" style="margin-top: 40px;">
         <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
           <div class="card-body">
             <div class="text-center">
-              <img src="../../../../assets/iya.png" class="img-fluid" style="width: 260px;height: 260px"/>
+              <h2 style="font-family: BlackChancery, sans-serif">Cashier Application</h2>
+<!--              <img src="../../../../assets/iya.png" class="img-fluid" style="width: 260px;height: 260px"/>-->
               <!-- <p class="lead">Questions? Do not hesitate to contact us.</p> -->
-              <h5 class="card-title mt-4 mb-5">Account Login</h5>
+              <h6 class="card-title mt-4 mb-5">Account Login</h6>
               <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
             </div>
             <div *ngIf="state.dataState === DataState.ERROR" class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
@@ -55,7 +56,7 @@
         <div class="card">
           <div class="card-body">
             <div class="text-center">
-              <h2><i style="margin-right: 5px;" class="bi bi-safe">Management System</i></h2>
+              <h2><i style="margin-right: 5px;" class="bi bi-safe">Cashier Application</i></h2>
               <h5 class="card-title mt-4 mb-4">Verification Code Sent To ...{{ state.phone }}</h5>
               <i class="bi bi-check-circle-fill" style="font-size: 30px;color: green;"></i>
               <p class="mt-2" style="font-size: 20px;">Please access your SMS and enter the code.</p>

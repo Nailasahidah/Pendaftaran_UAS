@@ -14,7 +14,7 @@
             <br>
             <br>
             <br>
-            <h3 class="fw-bold text-start fonts">List Customers</h3>
+            <h3 class="fw-bold text-start fonts" style="color: dimgrey">List Customers</h3>
             <br>
           </div>
           <div class="col">
@@ -24,30 +24,22 @@
             <h4 (click)="report()" class="fw-bold text-end"><i class="bi bi-download" style="cursor: pointer;color: green;font-size: 30px;"></i></h4>
           </div>
           <div class="col-xm-12">
-            <table class="table table-hover">
-              <thead>
+            <table class="table table-striped">
+              <thead >
               <tr>
                 <th class="text-center" scope="col">ID</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Phone</th>
+                <th class="text-center" scope="col">Action</th>
               </tr>
               </thead>
               <tbody class="table-body">
               <tr *ngFor="let customer of state?.appData?.data?.page.content" class="cell-1">
                 <th class="text-center">{{ customer.id }}</th>
-                <td><img [src]="customer.imageUrl" width="42" height="42" class="rounded-circle" [alt]="customer.name"></td>
-                <td>{{ customer.name }}</td>
-                <td>{{ customer.email }}</td>
-                <td>{{ customer.phone }}</td>
-                <td>
-                                  {{ customer.status }}
-                </td>
-                <td>
-                  <button type="button" (click)="selectCustomer(customer)" class="btn btn-outline-info">View</button>
+                <td class="text-center">{{ customer.name }}</td>
+                <td class="text-center">{{ customer.phone }}</td>
+                <td class="text-center">
+                  <button type="button" (click)="selectCustomer(customer)" class="btn btn-outline-secondary">View</button>
                 </td>
               </tr>
               </tbody>

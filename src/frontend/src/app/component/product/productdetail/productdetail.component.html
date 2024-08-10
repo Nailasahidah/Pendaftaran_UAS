@@ -1,0 +1,75 @@
+<ng-container *ngIf="(productState$ | async) as state" [ngSwitch]="state.dataState">
+  <ng-container *ngSwitchCase="DataState.LOADED">
+    <app-navbar [user]="state?.appData?.data?.user"></app-navbar>
+    <section>
+      <div class="container">
+        <nav aria-label="breadcrumb" style="margin-top: 8px;">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/products']">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ state?.appData?.data?.product.name }}</li>
+          </ol>
+        </nav>
+        <div class="row">
+          <div class="col-xl-4">
+          <div class="col-xl-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title; text-center">Product Details</h5>
+                <div class="d-flex align-items-start">
+                  <div class="w-100 ms-4">
+                    <h1 class="my-0" style="font-family: BlackChancery, sans-serif; font-weight: bold;">{{ state?.appData?.data?.product.name }}</h1>
+                  </div>
+                </div>
+                <br>
+                <form #productForm="ngForm" (ngSubmit)="updateProduct(productForm)">
+                  <input type="hidden" [ngModel]="state?.appData?.data?.product.id" name="id"
+                         [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)">
+                  <input type="hidden" [ngModel]="state?.appData?.data?.product.createdAt" name="createdAt"
+                         [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" >
+                  <div class="row mb-3">
+                    <label for="name" class="col-sm-3 col-form-label">Product Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" [ngModel]="state?.appData?.data?.product.name" name="name"
+                             [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="price" class="col-sm-3 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                      <input type="text" [ngModel]="state?.appData?.data?.product.price" name="email"
+                             [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="stock" class="col-sm-3 col-form-label">Stock</label>
+                    <div class="col-sm-9">
+                      <input type="text" [ngModel]="state?.appData?.data?.product.stock" name="type"
+                             [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <button [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                          type="submit" class="btn btn-primary float-end">
+                    <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true" style="margin-right: 5px;"></span>
+                    <span *ngIf="isLoading$ | async">Loading...</span>
+                    <span *ngIf="!(isLoading$ | async)">Update</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-container>
+
+<!--<form enctype="multipart/form-data" style="display:none;">-->
+<!--  <input #fileInput (change)="updatePicture($event.target.files[0])" accept="image/*" id="image" name="image"-->
+<!--         ngModel placeholder="file" type="file"/>-->
+<!--</form>-->

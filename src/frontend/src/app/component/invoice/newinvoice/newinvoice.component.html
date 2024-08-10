@@ -8,7 +8,7 @@
             <li class="breadcrumb-item">
               <a [routerLink]="['/']">Home</a>
             </li>
-            <li class="breadcrumb-item"> <a [routerLink]="['/invoices']">Invoices</a> </li>
+            <li class="breadcrumb-item"> <a [routerLink]="['/invoices']">Purchase</a> </li>
             <li class="breadcrumb-item active" aria-current="page">New</li>
           </ol>
         </nav>
@@ -17,29 +17,30 @@
             <div class="card">
               <div class="card-body">
                 <div class="text-center">
-                  <h2><i style="margin-right: 5px;" class="bi bi-receipt"></i> New Invoice
+                  <h2 style="font-family: Verdana, sans-serif"><i style="margin-right: 5px;" class="bi bi-receipt"></i> New Purchase
                   </h2>
                 </div>
-                <div *ngIf="state.error"
-                  class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
-                  role="alert">
-                  {{ state.error }}
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                          aria-label="Close"></button>
-                </div>
-                <div *ngIf="state.appData.message"
-                  class="alert alert-success bg-success text-light border-0 alert-dismissible fade show"
-                  role="alert">
-                  {{ state.appData.message }}
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                          aria-label="Close"></button>
-                </div>
+<!--                <div *ngIf="state.error"-->
+<!--                  class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"-->
+<!--                  role="alert">-->
+<!--                  {{ state.error }}-->
+<!--                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"-->
+<!--                          aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div-->
+<!--                  class="alert alert-success bg-success text-light border-0 alert-dismissible fade show"-->
+<!--                  role="alert">-->
+<!--                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"-->
+<!--                          aria-label="Close"></button>-->
+<!--                </div>-->
 
                 <form #invoiceForm="ngForm" (ngSubmit)="newInvoice(invoiceForm)">
                   <div class="row">
                     <div class="col-md-12" style="margin-bottom: 15px;">
                       <div class="form-group">
-                        <label>Services</label>
+                        <label>Detail</label>
+                        <br>
+                        <span style="font-style: italic">example : 2 smartphone Rp.15.000.000</span>
 <!--                        <select  [ngModel]="" name="productId" class="form-control select-cl" required>-->
 <!--                          <option *ngFor="let product of state?.appData?.data?.products"-->
 <!--                                  [ngValue]="product.id"-->
@@ -48,41 +49,60 @@
 <!--                                  class="select-cl"> {{ product.name }} {{ product.price }}-->
 <!--                          </option>-->
 <!--                        </select>-->
-                        <input type="text" ngModel name="services" class="form-control" required>
+                        <input type="text" ngModel name="services" class="form-control" required
+                               [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                        >
                       </div>
                     </div>
+
+<!--                    <div class="col-md-6" style="margin-bottom: 15px;">-->
+<!--                      <div class="form-group">-->
+<!--                        <label>No Product</label>-->
+<!--                        <input type="product_id" ngModel name="product_id" class="form-control" required-->
+<!--                               [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"-->
+<!--                        >-->
+<!--                      </div>-->
+<!--                    </div>-->
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <label>Customer</label>
-                      <select  [ngModel]="" name="customerId" class="form-control select-cl" required>
+                      <select  [ngModel]="" name="customerId" class="form-control select-cl" required
+                               [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                      >
                         <option *ngFor="let customer of state?.appData?.data?.customers"
                                 [ngValue]="customer.id"
                                 [selected]=""
                                 [disabled]=""
                                 class="select-cl"> {{ customer.name }}
-                        </option>
+                        >
                       </select>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <div class="form-group">
                         <label>Total</label>
-                        <input type="total" ngModel name="total" class="form-control" required>
+                        <input type="total" ngModel name="total" class="form-control" required
+                               [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                        >
                       </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <div class="form-group">
                         <label>Date</label>
-                        <input type="date" ngModel name="date" class="form-control" required>
+                        <input type="date" ngModel name="date" class="form-control" required
+                               [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                        >
                       </div>
                     </div>
-                    <div class="col-md-6" style="margin-bottom: 15px;">
-                      <label>Status</label>
-                      <select name="status" ngModel="PENDING" class="form-control" required>
-                        <option value="PENDING">PENDING</option>
-                        <option value="PAID">PAID</option>
-                        <option value="CANCELED">CANCELED</option>
-                        <option value="OVERDUE">OVERDUE</option>
-                      </select>
-                    </div>
+<!--                    <div class="col-md-6" style="margin-bottom: 15px;">-->
+<!--                      <label>Status</label>-->
+<!--                      <select name="status" ngModel="PENDING" class="form-control" required-->
+<!--                              [disabled]="(state?.appData?.data?.user?.roleName === 'ROLE_USER' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"-->
+<!--                      >-->
+<!--                        <option value="PENDING">PENDING</option>-->
+<!--                        <option value="PAID">PAID</option>-->
+<!--                        <option value="CANCELED">CANCELED</option>-->
+<!--                        <option value="OVERDUE">OVERDUE</option>-->
+<!--                      </select>-->
+<!--                    </div>-->
                   </div>
                   <div>
                     <button [disabled]="state.dataState === DataState.LOADING || invoiceForm.invalid || invoiceForm.pristine|| (isLoading$ | async)"

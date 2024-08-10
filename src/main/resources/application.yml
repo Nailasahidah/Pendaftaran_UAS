@@ -3,5 +3,6 @@ spring:
     active: @spring.profiles.active@
 
 application:
-  title: Sistem Pendaftaran
+  title: Cashier Application
   version: 1.0
+

@@ -13,7 +13,7 @@
                 </nav>
                 <div class="row mt-3">
                     <div class="col">
-                        <h2 class="fw-bold text-start fonts">Customers</h2>
+                        <h2 class="fw-bold text-start fonts" style="color: dimgrey">Customers</h2>
                     </div>
 
                     <div class="col-xm-12">
@@ -23,46 +23,31 @@
                                 <input type="text" id="name" ngModel name="name" #name class="form-control" placeholder="Customer Name">
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary mb-3 ">Search</button>
+                                <button type="submit" class="btn btn-secondary mb-3 ">Search</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-xm-12">
-                        <table class="table table-striped ">
-                            <thead>
+                        <table class="table table-striped">
+                            <thead class="custom-table-bg">
                             <tr >
                                 <th class="text-center" scope="col">ID</th>
-                                <th scope="col">Photo</th>
+
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Address</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Detail</th>
                             </tr>
                             </thead>
                             <tbody class="table-body">
                             <tr *ngFor="let customer of state?.appData?.data?.page.content" class="cell-1">
                                 <th class="text-center">{{ customer.id }}</th>
-                                <td><img [src]="customer.imageUrl" width="42" height="42" class="rounded-circle" [alt]="customer.name"></td>
                                 <td>{{ customer.name }}</td>
-                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.address }}</td>
                                 <td>{{ customer.phone }}</td>
                                 <td>
-                                    <span class="badge"
-                                            [ngClass]="[
-                                            customer.status === 'ACTIVE' ? ' bg-success' : '',
-                                            customer.status === 'PENDING' ? ' bg-primary' : '',
-                                            customer.status === 'BANNED' ? ' bg-danger' : '',
-                                            customer.status === 'INACTIVE' ? ' bg-info' : '',]"
-                                    >
-                                        {{ customer.status }}
-                                    </span>
-                                </td>
-                                <td>{{ customer.type }}</td>
-                                <td>
 <!--                                    <button type="button" [routerLink]="['/customers', customer.id]" class="btn btn-info">View</button>-->
-                                     <button type="button" (click)="selectCustomer(customer)" class="btn btn-outline-info">View</button>
+                                     <button type="button" (click)="selectCustomer(customer)" class="btn btn-outline-secondary">View</button>
                                 </td>
                             </tr>
                             </tbody>

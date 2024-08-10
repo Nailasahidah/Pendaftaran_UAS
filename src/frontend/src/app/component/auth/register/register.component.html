@@ -15,7 +15,8 @@
                         <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Full Name</label>
-                                <input type="text" [disabled]="state.dataState === DataState.LOADING" ngModel name="fullName" class="form-control" required minlength="2">
+                                <input type="text"
+                                       [disabled]="state.dataState === DataState.LOADING" ngModel name="fullName" class="form-control" required minlength="2">
                             </div>
                             <div class="form-outline mb-4">
                                 <label for="phone" class="form-label">Phone</label>

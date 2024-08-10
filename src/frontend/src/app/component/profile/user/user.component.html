@@ -55,18 +55,18 @@
                  data-bs-toggle="pill" id="password" role="tab">
                 <i class="bi bi-key-fill" style="margin-right: 12px;"></i> Password
               </a>
-              <a aria-controls="security" aria-selected="true" class="nav-link" data-bs-target="#security-tab"
-                 data-bs-toggle="pill" id="security" role="tab">
-                <i class="bi bi-shield-shaded" style="margin-right: 12px;"></i> Authorization
-              </a>
-              <a aria-controls="application" aria-selected="true" class="nav-link" data-bs-target="#application-tab"
-                 data-bs-toggle="pill" id="application" role="tab">
-                <i class="bi bi-gear" style="margin-right: 12px;"></i> Account
-              </a>
-              <a aria-controls="notification" aria-selected="true" class="nav-link" data-bs-target="#notification-tab"
-                 data-bs-toggle="pill" id="notification" role="tab">
-                <i class="bi bi-lock-fill" style="margin-right: 12px;"></i> Authentication
-              </a>
+<!--              <a aria-controls="security" aria-selected="true" class="nav-link" data-bs-target="#security-tab"-->
+<!--                 data-bs-toggle="pill" id="security" role="tab">-->
+<!--                <i class="bi bi-shield-shaded" style="margin-right: 12px;"></i> Authorization-->
+<!--              </a>-->
+<!--              <a aria-controls="application" aria-selected="true" class="nav-link" data-bs-target="#application-tab"-->
+<!--                 data-bs-toggle="pill" id="application" role="tab">-->
+<!--                <i class="bi bi-gear" style="margin-right: 12px;"></i> Account-->
+<!--              </a>-->
+<!--              <a aria-controls="notification" aria-selected="true" class="nav-link" data-bs-target="#notification-tab"-->
+<!--                 data-bs-toggle="pill" id="notification" role="tab">-->
+<!--                <i class="bi bi-lock-fill" style="margin-right: 12px;"></i> Authentication-->
+<!--              </a>-->
             </div>
           </div>
 
@@ -83,7 +83,6 @@
                     <div class="form-group">
                       <label>Full Name</label>
                       <input
-                              [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async) || (isLoading$ | async)"
                               [ngModel]="state?.appData?.data?.user?.fullName"
                               class="form-control"
                               name="fullName"
@@ -93,7 +92,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                      <input
                              [ngModel]="state?.appData?.data?.user?.email"
                              class="form-control"
                              name="email"
@@ -103,45 +102,25 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Phone</label>
-                      <input [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                      <input
                              [ngModel]="state?.appData?.data?.user?.phone"
                              class="form-control"
                              name="phone"
-                             type="text">
+                             type="tel">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Address</label>
-                      <input [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                      <input
                              [ngModel]="state?.appData?.data?.user?.address" class="form-control"
                              name="address"
                              type="text">
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Job Title</label>
-                      <input [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
-                             [ngModel]="state?.appData?.data?.user?.title" class="form-control"
-                             name="title"
-                             type="text">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Bio</label>
-                      <textarea
-                              [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
-                              [ngModel]="state?.appData?.data?.user?.bio"
-                              class="form-control"
-                              name="bio" rows="4">
-                      </textarea>
-                    </div>
-                  </div>
                 </div>
                 <div>
-                  <button [disabled]="state?.appData?.data?.user?.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                  <button
                           class="btn btn-primary"
                           type="submit">
                     <span *ngIf="isLoading$ | async"

@@ -6,52 +6,52 @@
         <nav aria-label="breadcrumb" style="margin-top: 8px;">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
-            <li class="breadcrumb-item active"> Invoices</li>
+            <li class="breadcrumb-item active"> Purchase</li>
           </ol>
         </nav>
         <div class="row mt-3">
           <div class="col">
-            <h4 class="fw-bold text-start">Invoices</h4>
+            <h2 class="fw-bold text-start" style="font-family: Verdana sans-serif">Penjualan & Pembelian</h2>
+            <br>
           </div>
           <div class="col">
             <h4 class="fw-bold text-end"><i style="cursor: pointer;color: green;font-size: 30px;"
                                             class="bi bi-download"></i></h4>
           </div>
           <div class="col-xm-12">
-            <table class="table table-hover">
+            <table class="table table-striped table-hover">
               <thead>
               <tr>
-                <th scope="col">Invoice Number</th>
-                <th scope="col">Service</th>
-                <th scope="col">Status</th>
-                <th scope="col">Date</th>
-                <th scope="col">Total</th>
-                <th scope="col">Action</th>
+                <th class="text-center" scope="col">No</th>
+                <th class="text-center"scope="col">Product</th>
+                <th class="text-center"scope="col">Date</th>
+                <th class="text-center"scope="col">Total</th>
+<!--                <th scope="col">Action</th>-->
               </tr>
               </thead>
               <tbody class="table-body">
               <tr *ngFor="let invoice of state?.appData?.data?.page.content" class="cell-1">
-                <td>{{ invoice.invoiceNumber }}</td>
+                <td class="text-center">{{ invoice.invoiceNumber }}</td>
                 <td>{{ invoice.services }}</td>
-                <td>
-                               <span class="badge"
-                                     [ngClass]="[
-                                 invoice.status === 'PAID' ? ' bg-success' : '',
-                                 invoice.status === 'PENDING' ? ' bg-primary' : '',
-                                 invoice.status === 'CANCELED' ? ' bg-danger' : '',
-                                 invoice.status === 'OVERDUE' ? ' bg-warning' : '',
-                                 ]">
-                                 {{ invoice.status }}
-                               </span>
-                </td>
-                <td>{{ invoice.date | date: 'mediumDate' }}</td>
-                <td>{{ invoice.total }}</td>
-                <td>
-                  <button [routerLink]="['/invoices', invoice.id, invoice.invoiceNumber]"
-                    type="button"
-                          class="btn btn-outline-info">Print
-                  </button>
-                </td>
+<!--                <td>-->
+<!--                               <span class="badge"-->
+<!--                                     [ngClass]="[-->
+<!--                                 invoice.status === 'PAID' ? ' bg-success' : '',-->
+<!--                                 invoice.status === 'PENDING' ? ' bg-primary' : '',-->
+<!--                                 invoice.status === 'CANCELED' ? ' bg-primary' : '',-->
+<!--                                 invoice.status === 'OVERDUE' ? ' bg-warning' : '',-->
+<!--                                 ]">-->
+<!--                                 {{ invoice.status }}-->
+<!--                               </span>-->
+<!--                </td>-->
+                <td class="text-center">{{ invoice.date | date: 'mediumDate' }}</td>
+                <td class="text-center">{{ invoice.total }}</td>
+<!--                <td>-->
+<!--                  <button [routerLink]="['/invoices', invoice.id, invoice.invoiceNumber]"-->
+<!--                          type="button"-->
+<!--                          class="btn btn-outline-success">Print-->
+<!--                  </button>-->
+<!--                </td>-->
               </tr>
               </tbody>
             </table>

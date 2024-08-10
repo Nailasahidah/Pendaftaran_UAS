@@ -93,6 +93,15 @@ export class ProductService {
               catchError(this.handleError)
           );
 
+  updateImage$ = (formData: FormData) => <Observable<CustomHttpResponse<Product>>>
+    this.http.patch<CustomHttpResponse<Product>>
+    (`${this.server}/product/update/image`, formData)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error);
     let errorMessage: string;
